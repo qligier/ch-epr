@@ -59,3 +59,9 @@ Mapped to `SubmissionSet.title`.
 | description | 0..1 | O | O | :heavy_check_mark: OK |
 
 ## Mapping DocumentReference to DocumentEntry
+
+## Dates mapping
+
+HL7's DTM shall be encoded in the format `YYYY[MM[DD[HH[MM[SS[.S[S[S[S]]]]]]]]][+/-ZZZZ]`. It allows various precision levels and the choice of time zone.
+The dateTime format is different: `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `YYYY-MM-DDThh:mm:ss+zz:zz` or `YYYY-MM-DDThh:mm:ss.sssZ`. When using the time precision, the timezone is mandatory.
+Guidance is required to map e.g. `YYYYMMDDHH` to FHIR dateTime.
