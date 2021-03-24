@@ -1,6 +1,6 @@
-# XDS on FHIR mapping for ITI-65 transaction in CH-EPR (MHD Provide Document Bundle)
+# XDS on FHIR mapping in CH-EPR
 
-This is a draft to map FHIR resources to equivalent XDS resources in the context of an ITI-65 transaction with XDS on FHIR option, in CH-EPR. XDS cardinalities are for the sending actor and incorporate Swiss requirements.
+This is a draft to map FHIR resources to equivalent XDS resources in the context of a transaction with XDS on FHIR option, in CH-EPR. XDS cardinalities incorporate Swiss requirements.
 
 [XDS-FHIR-mapping](https://wiki.ihe.net/index.php/XDS-FHIR-mapping "XDS-FHIR-mapping") by IHE, [Resource DocumentManifest - Mappings](https://www.hl7.org/fhir/documentmanifest-mappings.html "Resource DocumentManifest - Mappings") and [Resource DocumentReference - Mappings](https://www.hl7.org/fhir/documentreference-mappings.html "Resource DocumentReference - Mappings") by HL7.
 
@@ -41,5 +41,24 @@ Mapped to `SubmissionSet.contentTypeCode`.<br> In CH-EPR, a [value set](http://f
 – **description**<br>
 
 – **content**<br>
+Mapped to `SubmissionSet.title`.
+
+– **others**<br>
+`SubmissionSet.comments` and `SubmissionSet.homeCommunityId` are not mapped.
+
+– **cardinalities**<br>
+
+| Property | FHIR | XDS sending | XDS responding | Comment |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| masterIdentifier | 0..1 | R | R | :warning: Incompatible for sending actor |
+| identifier | 0..*	| R | R | :warning: Incompatible for sending actor |
+| status | 1..1 | O | R | :heavy_check_mark: OK |
+| type | 0..1 | R | R | :warning: Incompatible for sending actor |
+| subject | 0..1 | R | R | :warning: Incompatible for sending actor |
+| created | 0..1 | R | R | :warning: Incompatible for sending actor |
+| author | 0..*	| R | R | :warning: Incompatible for sending actor |
+| recipient | 0..* | O | O | :heavy_check_mark: OK |
+| source | 0..1 | R | R | :warning: Incompatible for sending actor |
+| description | 0..1 | O | O | :heavy_check_mark: OK |
 
 ## Mapping DocumentReference to DocumentEntry
