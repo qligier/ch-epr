@@ -37,7 +37,29 @@ Mapped to `SubmissionSet.submissionTime`. See dates mapping below.
 
 ### author
 Aweful mapping.<br>
-Swiss modification: SubmissionSet.Author.AuthorRole is required. See CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.Author.AuthorRole.html).
+Swiss modification: SubmissionSet.Author.AuthorRole is required. See CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.Author.AuthorRole.html).<br>
+- If author is Reference(Practitioner):
+  - authorPerson is
+  - authorInstitution: "Organization" in "contained". XON.1 is Organization.name, XON.6.2, XON.6.3 and XON.10 are Organization.identifier. Other XON fields are forbidden. Other Organization fields are forbidden, ignored or stored?
+  - authorRole is "Healthcare professional"
+  - authorSpecialty is
+  - authorTelecommunication is
+- If author is Reference(Patient):
+  - authorPerson is
+  - authorInstitution is
+  - authorRole is "Patient"
+  - authorSpecialty is
+  - authorTelecommunication is
+- If author is Reference(RelatedPerson):
+  - authorPerson is
+  - authorInstitution is
+  - authorRole is "Representative"
+  - authorSpecialty is
+  - authorTelecommunication is
+- If author is Reference(PractitionerRole): forbidden?
+- If author is Reference(Organization): forbidden?
+- If author is Reference(Device): forbidden?
+- Missing Assistant and Technical user.
 
 ### recipient
 Aweful mapping.
@@ -49,7 +71,7 @@ Mapped to `SubmissionSet.sourceId`.
 Mapped to `SubmissionSet.title`.
 
 ### text
-Mapped to `SubmissionSet.comments`. Raw text in XDS, XHTML in FHIR. <br>
+Mapped to `SubmissionSet.comments`. Raw text in XDS, XHTML in FHIR.<br>
 ⚠️ Tags should be forbidden in FHIR.<br>
 ⚠️ Narrative.status is required in FHIR, absent from XDS.
 
@@ -83,5 +105,5 @@ Mapped to `SubmissionSet.limitedMetadata`. Will probably not be used in CH-EPR.
 ## Dates mapping
 
 HL7's DTM shall be encoded in the format `YYYY[MM[DD[HH[MM[SS[.S[S[S[S]]]]]]]]][+/-ZZZZ]`. It allows various precision levels and the choice of time zone.
-The dateTime format is different: `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `YYYY-MM-DDThh:mm:ss+zz:zz` or `YYYY-MM-DDThh:mm:ss.sssZ`. When using the time precision, the timezone is mandatory.
+The dateTime format is different: `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `YYYY-MM-DDThh:mm:ss+zz:zz` or `YYYY-MM-DDThh:mm:ss.sssZ`. When using the time precision, the timezone is mandatory.<br>
 ⚠️ Guidance is required to convert e.g. `YYYYMMDDHH` to FHIR dateTime (use the earliest instant covered by the partial date?).
