@@ -1,5 +1,7 @@
 # XDS on FHIR mapping for ITI-65 transaction in CH-EPR (MHD Provide Document Bundle)
 
+This is a draft to map FHIR resources to equivalent XDS resources in the context of an ITI-65 transaction with XDS on FHIR option, in CH-EPR. XDS cardinalities are for the sending actor and incorporate Swiss requirements.
+
 [XDS-FHIR-mapping](https://wiki.ihe.net/index.php/XDS-FHIR-mapping "XDS-FHIR-mapping") by IHE, [Resource DocumentManifest - Mappings](https://www.hl7.org/fhir/documentmanifest-mappings.html "Resource DocumentManifest - Mappings") and [Resource DocumentReference - Mappings](https://www.hl7.org/fhir/documentreference-mappings.html "Resource DocumentReference - Mappings") by HL7.
 
 ## Mapping DocumentManifest to SubmissionSet
