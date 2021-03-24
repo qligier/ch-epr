@@ -4,16 +4,17 @@
 
 ## Mapping DocumentManifest to SubmissionSet
 
-**masterIdentifier**
-Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.
+– **masterIdentifier**<br>
+Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.<br>
 :warning: Cardinalities are not aligned.
 
-**identifier**
-Mapped to `SubmissionSet.entryUUID`. How?
+– **identifier**<br>
+Mapped to `SubmissionSet.entryUUID`. How?<br>
 :warning: Cardinalities are not aligned.
 
-**status**
-Mapped to `SubmissionSet.availabilityStatus`. In XDS, the status is always *Approved*; anything else should be rejected.
+– **status**<br>
+Mapped to `SubmissionSet.availabilityStatus`.<br>
+:warning: In XDS, the status is always *Approved*; anything else should be rejected.
 
 | DocumentManifest.status | SubmissionSet.availabilityStatus |
 | ------------ | ------------ |
@@ -21,20 +22,22 @@ Mapped to `SubmissionSet.availabilityStatus`. In XDS, the status is always *Appr
 | superseded | urn:oasis:names:tc:ebxml-regrep:StatusType:Deprecated |
 | entered-in-error | urn:oasis:names:tc:ebxml-regrep:StatusType:Withdrawn ? |
 
-**type**
+– **type**<br>
+Mapped to `SubmissionSet.contentTypeCode`.<br> In CH-EPR, a [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html) is used to restrict this property.
+:warning: Cardinalities are not aligned.
 
-**subject**
+– **subject**<br>
 
-**created**
+– **created**<br>
 
-**author**
+– **author**<br>
 
-**recipient**
+– **recipient**<br>
 
-**source**
+– **source**<br>
 
-**description**
+– **description**<br>
 
-**content**
+– **content**<br>
 
 ## Mapping DocumentReference to DocumentEntry
