@@ -16,7 +16,7 @@ Mapped to `SubmissionSet.entryUUID`. How?<br>
 
 ### status
 Mapped to `SubmissionSet.availabilityStatus`.<br>
-:warning: In XDS, the status is always *Approved*; anything else should be rejected.
+⚠️ In XDS, the status is always *Approved*; anything else should be rejected.
 
 | DocumentManifest.status | SubmissionSet.availabilityStatus |
 | ------------ | ------------ |
@@ -29,7 +29,7 @@ Mapped to `SubmissionSet.contentTypeCode`.<br> There is a CH-EPR [value set](htt
 
 ### subject
 Mapped to `SubmissionSet.patientId`. How?<br>
-:warning: IHE ITI MHD 4.5.1.2 says: 
+⚠️ IHE ITI MHD 4.5.1.2 says: 
 > IHE constraint Reference(Patient). Not a contained resource. URL Points to an existing Patient Resource representing Affinity Domain Patient.
 
 ### created
@@ -50,8 +50,8 @@ Mapped to `SubmissionSet.title`.
 
 ### text
 Mapped to `SubmissionSet.comments`. Raw text in XDS, XHTML in FHIR. <br>
-:warning: Tags should be forbidden in FHIR.<br>
-:warning: Narrative.status is required in FHIR, absent from XDS.
+⚠️ Tags should be forbidden in FHIR.<br>
+⚠️ Narrative.status is required in FHIR, absent from XDS.
 
 ### content
 Contains other resources.
@@ -66,17 +66,17 @@ Mapped to `SubmissionSet.limitedMetadata`. Will probably not be used in CH-EPR.
 
 | Property | FHIR | XDS sending | XDS responding | Comment |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| masterIdentifier | 0..1 | R | R | :warning: Incompatible for sending actor |
-| identifier | 0..*	| R | R | :warning: Incompatible for sending actor |
-| status | 1..1 | O | R | :heavy_check_mark: OK |
-| type | 0..1 | R | R | :warning: Incompatible for sending actor |
-| subject | 0..1 | R | R | :warning: Incompatible for sending actor |
-| created | 0..1 | R | R | :warning: Incompatible for sending actor |
-| author | 0..*	| R | R | :warning: Incompatible for sending actor |
-| recipient | 0..* | O | O | :heavy_check_mark: OK |
-| source | 0..1 | R | R | :warning: Incompatible for sending actor |
-| description | 0..1 | O | O | :heavy_check_mark: OK |
-| text | 0..1 | O | O | :heavy_check_mark: OK |
+| masterIdentifier | 0..1 | R | R | ⚠️ Incompatible for sending actor |
+| identifier | 0..*	| R | R | ⚠️ Incompatible for sending actor |
+| status | 1..1 | O | R | ✔️ OK |
+| type | 0..1 | R | R | ⚠️ Incompatible for sending actor |
+| subject | 0..1 | R | R | ⚠️ Incompatible for sending actor |
+| created | 0..1 | R | R | ⚠️ Incompatible for sending actor |
+| author | 0..*	| R | R | ⚠️ Incompatible for sending actor |
+| recipient | 0..* | O | O | ✔️ OK |
+| source | 0..1 | R | R | ⚠️ Incompatible for sending actor |
+| description | 0..1 | O | O | ✔️ OK |
+| text | 0..1 | O | O | ✔️ OK |
 
 ## Mapping DocumentReference to DocumentEntry
 
@@ -84,4 +84,4 @@ Mapped to `SubmissionSet.limitedMetadata`. Will probably not be used in CH-EPR.
 
 HL7's DTM shall be encoded in the format `YYYY[MM[DD[HH[MM[SS[.S[S[S[S]]]]]]]]][+/-ZZZZ]`. It allows various precision levels and the choice of time zone.
 The dateTime format is different: `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `YYYY-MM-DDThh:mm:ss+zz:zz` or `YYYY-MM-DDThh:mm:ss.sssZ`. When using the time precision, the timezone is mandatory.
-Guidance is required to map e.g. `YYYYMMDDHH` to FHIR dateTime (use the earliest instant covered by the partial date?).
+⚠️ Guidance is required to convert e.g. `YYYYMMDDHH` to FHIR dateTime (use the earliest instant covered by the partial date?).
