@@ -1,6 +1,6 @@
-# XDS on FHIR mapping in CH-EPR
+# XDS-FHIR resources mapping in CH-EPR
 
-This is a draft to map FHIR resources to equivalent XDS resources in the context of a transaction with XDS on FHIR option, in CH-EPR. XDS cardinalities incorporate Swiss requirements.
+This is a draft to map FHIR resources to equivalent XDS resources in CH-EPR. XDS cardinalities incorporate Swiss requirements.
 
 [XDS-FHIR-mapping](https://wiki.ihe.net/index.php/XDS-FHIR-mapping "XDS-FHIR-mapping") by IHE, [Resource DocumentManifest - Mappings](https://www.hl7.org/fhir/documentmanifest-mappings.html "Resource DocumentManifest - Mappings") and [Resource DocumentReference - Mappings](https://www.hl7.org/fhir/documentreference-mappings.html "Resource DocumentReference - Mappings") by HL7.
 
