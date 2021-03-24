@@ -1,2 +1,5 @@
 # ch-epr
-Various documentations about CH-EPR and related
+
+My personnal documentation about CH-EPR and related
+
+The documentation is published on GitHub Pages: [qligier.github.io/ch-epr/](https://qligier.github.io/ch-epr/)
