@@ -4,6 +4,8 @@ This is a draft to map FHIR resources to equivalent XDS resources in the context
 
 [XDS-FHIR-mapping](https://wiki.ihe.net/index.php/XDS-FHIR-mapping "XDS-FHIR-mapping") by IHE, [Resource DocumentManifest - Mappings](https://www.hl7.org/fhir/documentmanifest-mappings.html "Resource DocumentManifest - Mappings") and [Resource DocumentReference - Mappings](https://www.hl7.org/fhir/documentreference-mappings.html "Resource DocumentReference - Mappings") by HL7.
 
+See also IHE ITI TF MHD, 4.5.1.2.
+
 ## Mapping DocumentManifest to SubmissionSet
 
 ### masterIdentifier
@@ -23,25 +25,42 @@ Mapped to `SubmissionSet.availabilityStatus`.<br>
 | entered-in-error | urn:oasis:names:tc:ebxml-regrep:StatusType:Withdrawn ? |
 
 ### type
-Mapped to `SubmissionSet.contentTypeCode`.<br> In CH-EPR, a [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html) is used to restrict this property.
+Mapped to `SubmissionSet.contentTypeCode`.<br> There is a CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html).
 
 ### subject
+Mapped to `SubmissionSet.patientId`. How?<br>
+:warning: IHE ITI MHD 4.5.1.2 says: 
+> IHE constraint Reference(Patient). Not a contained resource. URL Points to an existing Patient Resource representing Affinity Domain Patient.
 
 ### created
+Mapped to `SubmissionSet.submissionTime`. See dates mapping below.
 
 ### author
+Aweful mapping.<br>
+Swiss modification: SubmissionSet.Author.AuthorRole is required. See CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.Author.AuthorRole.html).
 
 ### recipient
+Aweful mapping.
 
 ### source
+Mapped to `SubmissionSet.sourceId`.
 
 ### description
-
-### content
 Mapped to `SubmissionSet.title`.
 
+### text
+Mapped to `SubmissionSet.comments`. Raw text in XDS, XHTML in FHIR. <br>
+:warning: Tags should be forbidden in FHIR.<br>
+:warning: Narrative.status is required in FHIR, absent from XDS.
+
+### content
+Contains other resources.
+
+### meta.profile
+Mapped to `SubmissionSet.limitedMetadata`. Will probably not be used in CH-EPR.
+
 ### others
-`SubmissionSet.comments` and `SubmissionSet.homeCommunityId` are not mapped.
+`SubmissionSet.homeCommunityId` is not mapped (it's probably not needed). Other FHIR properties are unmapped and will be lost.
 
 ### cardinalities
 
@@ -57,6 +76,7 @@ Mapped to `SubmissionSet.title`.
 | recipient | 0..* | O | O | :heavy_check_mark: OK |
 | source | 0..1 | R | R | :warning: Incompatible for sending actor |
 | description | 0..1 | O | O | :heavy_check_mark: OK |
+| text | 0..1 | O | O | :heavy_check_mark: OK |
 
 ## Mapping DocumentReference to DocumentEntry
 
@@ -64,4 +84,4 @@ Mapped to `SubmissionSet.title`.
 
 HL7's DTM shall be encoded in the format `YYYY[MM[DD[HH[MM[SS[.S[S[S[S]]]]]]]]][+/-ZZZZ]`. It allows various precision levels and the choice of time zone.
 The dateTime format is different: `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `YYYY-MM-DDThh:mm:ss+zz:zz` or `YYYY-MM-DDThh:mm:ss.sssZ`. When using the time precision, the timezone is mandatory.
-Guidance is required to map e.g. `YYYYMMDDHH` to FHIR dateTime.
+Guidance is required to map e.g. `YYYYMMDDHH` to FHIR dateTime (use the earliest instant covered by the partial date?).
