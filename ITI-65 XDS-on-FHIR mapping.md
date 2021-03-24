@@ -6,15 +6,13 @@ This is a draft to map FHIR resources to equivalent XDS resources in the context
 
 ## Mapping DocumentManifest to SubmissionSet
 
-– **masterIdentifier**<br>
-Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.<br>
-:warning: Cardinalities are not aligned.
+### masterIdentifier
+Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.
 
-– **identifier**<br>
+### identifier
 Mapped to `SubmissionSet.entryUUID`. How?<br>
-:warning: Cardinalities are not aligned.
 
-– **status**<br>
+### status
 Mapped to `SubmissionSet.availabilityStatus`.<br>
 :warning: In XDS, the status is always *Approved*; anything else should be rejected.
 
@@ -24,29 +22,28 @@ Mapped to `SubmissionSet.availabilityStatus`.<br>
 | superseded | urn:oasis:names:tc:ebxml-regrep:StatusType:Deprecated |
 | entered-in-error | urn:oasis:names:tc:ebxml-regrep:StatusType:Withdrawn ? |
 
-– **type**<br>
+### type
 Mapped to `SubmissionSet.contentTypeCode`.<br> In CH-EPR, a [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html) is used to restrict this property.
-:warning: Cardinalities are not aligned.
 
-– **subject**<br>
+### subject
 
-– **created**<br>
+### created
 
-– **author**<br>
+### author
 
-– **recipient**<br>
+### recipient
 
-– **source**<br>
+### source
 
-– **description**<br>
+### description
 
-– **content**<br>
+### content
 Mapped to `SubmissionSet.title`.
 
-– **others**<br>
+### others
 `SubmissionSet.comments` and `SubmissionSet.homeCommunityId` are not mapped.
 
-– **cardinalities**<br>
+### cardinalities
 
 | Property | FHIR | XDS sending | XDS responding | Comment |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
