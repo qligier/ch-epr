@@ -187,6 +187,7 @@ Mapped to `DocumentEntry.practiceSettingCode`.
 Mapped to `DocumentEntry.patientId`, `DocumentEntry.sourcePatientInfo` and `DocumentEntry.sourcePatientId`. In FHIR, it's a contained Patient resource. The sourcePatientInfo attribute should not include values for PID-2 (patient id), PID-4 (alternate patient id), PID-12 (country code), or PID-19 (social security number). ⚠️ Way too many PID segments to map.
 
 | XDS | FHIR | Comment |
+| ------------ | ------------ | ------------ |
 | patientId.CX.1 | Patient.identifier.value[@value] |  |
 | patientId.CX.6.HD.2 | Patient.identifier.system[@value] | Code system mapping |
 | sourcePatientId.CX.1 | Patient.identifier[use[@value="usual"]].value[@value] |  |
