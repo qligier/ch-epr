@@ -124,6 +124,7 @@ Mapped to `DocumentEntry.referenceIdList`.
 ## cardinalities
 
 | Property | MHD Provide | MHD Query | XDS sending | XDS responding | Comment |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | masterIdentifier | 1..1 | 1..1 | R | R | ✔️ OK |
 | author | 0..*	| 0..*	| R | R | ⚠️ Incompatible |
+| date | 1..1	| 1..1	| X | X | ⚠️ Incompatible |
