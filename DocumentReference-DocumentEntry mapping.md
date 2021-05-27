@@ -97,6 +97,7 @@ Mapped to `DocumentEntry.practiceSettingCode`.Value set on both sides.<br>
 ## context.sourcePatientInfo
 Mapped to `DocumentEntry.sourcePatientInfo` and `DocumentEntry.sourcePatientId`.
 In FHIR, it's a contained CH Core Patient Profile resource.<br>
+There a value set for `DocumentEntry.sourcePatientInfo.PID-8`.<br>
 ⚠️ `DocumentEntry.sourcePatientInfo` is way too hard to map, but it's optional.
 
 | XDS | FHIR | Comment |
