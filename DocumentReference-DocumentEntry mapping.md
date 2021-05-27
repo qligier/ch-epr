@@ -26,17 +26,43 @@ Mapped to `DocumentEntry.availabilityStatus`. Sending actor: required in MHD but
 
 ### type
 Mapped to `DocumentEntry.typeCode`. Value set on both sides.<br>
-⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.
+⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ### category
 Mapped to `DocumentEntry.classCode`. Value set on both sides.<br>
-⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.
+⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ### subject
 Mapped to `DocumentEntry.patientId`. The referenced CH Core Patient Profile is provided in the Bundle.
 
 ### author
-Aweful mapping. Mapped to `DocumentEntry.author`.
+Complex mapping. Mapped to `DocumentEntry.author`.<br>
+⚠️ No MHD binding but XDS constrained by value set DocumentEntry.authorSpeciality.<br>
+⚠️ No MHD binding but XDS constrained by value set DocumentEntry.author.authorRole.<br>
+- If author is Reference(CH Core Practitioner Profile):
+  - authorPerson is ?
+  - authorInstitution: "Organization" in "contained". XON.1 is Organization.name, XON.6.2, XON.6.3 and XON.10 are Organization.identifier. Other XON fields are forbidden. Other Organization fields are forbidden, ignored or stored?
+  - authorRole is "Healthcare professional"?
+  - authorSpecialty is ?
+  - authorTelecommunication is ?
+- If author is Reference(CH Core Patient Profile):
+  - authorPerson is ?
+  - authorInstitution is ?
+  - authorRole is "Patient"?
+  - authorSpecialty is ?
+  - authorTelecommunication is ?
+- If author is Reference(RelatedPerson):
+  - authorPerson is ?
+  - authorInstitution is ?
+  - authorRole is "Representative"?
+  - authorSpecialty is ?
+  - authorTelecommunication is ?
+- If author is Reference(CH Core Practitioner Role Profile): forbidden?
+- If author is Reference(CH Core Organization Profile): forbidden?
+- If author is Reference(Device): forbidden?
+- Missing Assistant and Technical user.
 
 ### authorRole
 ⚠️ Mapped to `ch-ext-author-authorrole` in DocumentManifest but absent from these profiles.
@@ -49,7 +75,8 @@ Mapped to `DocumentEntry.comments`.
 
 ## securityLabel
 Mapped to `DocumentEntry.confidentialityCode`. Value set on both sides.<br>
-⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.
+⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ## ch-ext-deletionstatus
 Mapped to `DocumentEntry.deletionStatus`. Value set on both sides.<br>
@@ -61,10 +88,12 @@ Mapped to `DocumentEntry.deletionStatus`. Value set on both sides.<br>
 ⚠️ Absent from XDS
 
 ## content.attachment.contentType
-Mapped to `DocumentEntry.mimeType`. 
+Mapped to `DocumentEntry.mimeType`.<br>
+⚠️ No MHD binding but XDS constrained by value set DocumentEntry.mimeType.
 
 ## content.attachment.language
 Mapped to `DocumentEntry.languageCode`. Value set on both sides.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ## content.attachment.size
 Mapped to `DocumentEntry.size`. The size is calculated on the data prior to base64 encoding, if the data is base64 encoded.
@@ -82,21 +111,25 @@ Mapped to `DocumentEntry.creationTime`.<br>
 
 ## content.format
 Mapped to `DocumentEntry.formatCode`. Value set on both sides.<br>
-⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.
+⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ## context.event
-Mapped to `DocumentEntry.eventCodeList`.
+Mapped to `DocumentEntry.eventCodeList`.<br>
+⚠️ MHD binding _HL7 v3 Value Set ActCode_ is incompatible with DocumentEntry.eventCodeList value set.
 
 ## context.period
 Mapped to `DocumentEntry.serviceStartTime` and `DocumentEntry.serviceStopTime`.
 
 ## context.facilityType
 Mapped to `DocumentEntry.healthcareFacilityTypeCode`.Value set on both sides.<br>
-⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.
+⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ## context.practiceSetting
 Mapped to `DocumentEntry.practiceSettingCode`.Value set on both sides.<br>
-⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.
+⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
+⚠️ MHD binding is only preferred, not required.
 
 ## context.sourcePatientInfo
 Mapped to `DocumentEntry.sourcePatientInfo` and `DocumentEntry.sourcePatientId`.
