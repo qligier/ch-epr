@@ -1,4 +1,4 @@
-# XDS-FHIR resources mapping in CH-EPR
+# Generic XDS-FHIR mapping in CH-EPR
 
 See [DocumentManifest-SubmissionSet mapping](DocumentManifest-SubmissionSet mapping.md) and [DocumentReference-DocumentEntry mapping](DocumentReference-DocumentEntry mapping.md).
 
