@@ -75,7 +75,7 @@ This could be restricted in MHD, other profiles should not be supported.
 ### others
 `SubmissionSet.homeCommunityId` is not mapped. Other FHIR properties are unmapped and will be lost.
 
-### cardinalities
+## cardinalities
 
 | Property | MHD | XDS sending | XDS responding | Comment |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -86,7 +86,7 @@ This could be restricted in MHD, other profiles should not be supported.
 | subject | 1..1 | R | R | ✔️ OK |
 | created | 1..1 | R | R | ✔️ OK |
 | author | 0..*	| R | R | ⚠️ Incompatible |
-| authorRole | 1..1	| R | R | ✔️ OK |
+| authorRole | 1..1	| O | O | ⚠️ Incompatible |
 | recipient | 0..* | O | O | ✔️ OK |
 | source | 1..1 | R | R | ✔️ OK |
 | description | 0..1 | O | O | ✔️ OK |
