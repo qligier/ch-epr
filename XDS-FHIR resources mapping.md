@@ -1,5 +1,7 @@
 # XDS-FHIR resources mapping in CH-EPR
 
+See [DocumentManifest-SubmissionSet mapping](DocumentManifest-SubmissionSet mapping.md) and [DocumentReference-DocumentEntry mapping](DocumentReference-DocumentEntry mapping.md).
+
 ## Dates mapping
 
 HL7's DTM shall be encoded in the format `YYYY[MM[DD[HH[MM[SS[.S[S[S[S]]]]]]]]][+/-ZZZZ]`. It allows various precision levels and the choice of time zone.
