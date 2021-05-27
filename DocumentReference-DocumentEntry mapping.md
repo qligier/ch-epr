@@ -185,8 +185,8 @@ Other FHIR properties are not mapped and will be lost.
 | securityLabel                  | 1..* | 1..* | R | R | ✔️ OK |
 | content.attachment.contentType | 1..1 | 1..1 | R | R | ✔️ OK |
 | content.attachment.language    | 1..1 | 1..1 | R | R | ✔️ OK |
-| content.attachment.size        | 0..1 | 0..1 | O | R | ✔️ OK, may have to calculate it |
-| content.attachment.hash        | 0..1 | 0..1 | O | R | ✔️ OK, may have to calculate it |
+| content.attachment.size        | 0..1 | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
+| content.attachment.hash        | 0..1 | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
 | content.attachment.title       | 0..1 | 0..1 | R | R | ⚠️ Incompatible |
 | content.attachment.creation    | 1..1 | 1..1 | R | R/X | ⚠️ Incompatible |
 | content.format                 | 1..1 | 1..1 | R | R | ✔️ OK |
