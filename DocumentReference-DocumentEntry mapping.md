@@ -38,6 +38,9 @@ Mapped to `DocumentEntry.patientId`. The referenced CH Core Patient Profile is p
 ### author
 Aweful mapping. Mapped to `DocumentEntry.author`.
 
+### authorRole
+⚠️ Mapped to `ch-ext-author-authorrole` in DocumentManifest but absent from these profiles.
+
 ### authenticator
 Mapped to `DocumentEntry.legalAuthenticator`. XCN (HL7 V2.5 Extended Person Name) to Reference(CH Core Practitioner Profile | CH Core Practitioner Role Profile). Optional, so not so important for a first mapping.
 
@@ -116,9 +119,11 @@ Mapped to `DocumentEntry.referenceIdList`. Not used in CH-EPR?
 
 Mapped to `DocumentEntry.referenceIdList`.
 
+## objectType
+⚠️ Absent from MHD but required in XDS. It should not be an issue for the PMP or the MobileAccessGateway, but others may encounter it.
 
 ### others
-`DocumentEntry.repositoryUniqueId` is not mapped. Other FHIR properties are unmapped and will be lost.
+`homeCommunityId` and `DocumentEntry.repositoryUniqueId` is not mapped. Other FHIR properties are not mapped and will be lost.
 
 
 ## cardinalities
