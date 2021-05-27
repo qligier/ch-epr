@@ -89,7 +89,7 @@ Mapped to `DocumentEntry.deletionStatus`. Value set on both sides.<br>
 
 ## content.attachment.contentType
 Mapped to `DocumentEntry.mimeType`.<br>
-⚠️ No MHD binding but XDS constrained by value set DocumentEntry.mimeType.
+⚠️ No MHD binding but XDS constrained by value set [DocumentEntry.mimeType](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.16&effectiveDate=2021-04-01T17:07:34).
 
 ## content.attachment.language
 Mapped to `DocumentEntry.languageCode`. Value set on both sides.<br>
@@ -116,7 +116,7 @@ Mapped to `DocumentEntry.formatCode`. Value set on both sides.<br>
 
 ## context.event
 Mapped to `DocumentEntry.eventCodeList`.<br>
-⚠️ MHD binding _HL7 v3 Value Set ActCode_ is incompatible with DocumentEntry.eventCodeList value set.
+⚠️ MHD binding [HL7 v3 Value Set ActCode](http://hl7.org/fhir/R4/v3/ActCode/vs.html) is incompatible with [DocumentEntry.eventCodeList](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.8&effectiveDate=2021-04-01T17:00:07) value set.
 
 ## context.period
 Mapped to `DocumentEntry.serviceStartTime` and `DocumentEntry.serviceStopTime`.
@@ -169,7 +169,7 @@ Other FHIR properties are not mapped and will be lost.
 
 | Property                       | MHD Provide | MHD Query | XDS sending | XDS responding | Comment |
 | ------------                   | ---- | ---- | - | - | ------------ |
-| ch-ext-deletionstatus	         | 0..1 | 0..1 | O | O | ✔️ OK |
+| deletionstatus	               | 0..1 | 0..1 | O | O | ✔️ OK |
 | masterIdentifier               | 1..1 | 1..1 | R | R | ✔️ OK |
 | identifier                     | 1..*	| 1..* | R | R | ✔️ OK |
 | status                         | 1..1 | 1..1 | O | R | ✔️ OK (see comment) |
