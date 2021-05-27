@@ -27,12 +27,14 @@ Mapped to `DocumentEntry.availabilityStatus`. Sending actor: required in MHD but
 ### type
 Mapped to `DocumentEntry.typeCode`. Value set on both sides.<br>
 ⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
-⚠️ MHD binding is only preferred, not required.
+⚠️ MHD binding is only preferred, not required.<br>
+⚠️ No type-category mapping, as per [DocumentEntry.classCode_DocumentEntry.typeCode_mapping](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.1.4&effectiveDate=2021-04-01T10:38:06).
 
 ### category
 Mapped to `DocumentEntry.classCode`. Value set on both sides.<br>
 ⚠️ XDS requires the value, display name and coding scheme. Those are optional in MHD.<br>
-⚠️ MHD binding is only preferred, not required.
+⚠️ MHD binding is only preferred, not required.<br>
+⚠️ No type-category mapping, as per [DocumentEntry.classCode_DocumentEntry.typeCode_mapping](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.1.4&effectiveDate=2021-04-01T10:38:06).
 
 ### subject
 Mapped to `DocumentEntry.patientId`. The referenced CH Core Patient Profile is provided in the Bundle.
