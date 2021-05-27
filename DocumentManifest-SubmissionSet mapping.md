@@ -1,78 +1,79 @@
 # DocumentManifest-SubmissionSet mapping in CH-EPR
 
-A review of [StructureDefinition: IHE_MHD_Comprehensive_DocumentManifest_CH](http://fhir.ch/ig/ch-epr-mhealth/StructureDefinition-ch-mhd-comprehensive-documentmanifest.html) against releveant XDS specifications.
+A review of [Resource Profile: CH MHD SubmissionSet Comprehensive](http://build.fhir.org/ig/ehealthsuisse/ch-epr-mhealth/StructureDefinition-ch-mhd-submissionset-comprehensive.html) (draft v0.2.0) against releveant XDS specifications.
 
 See also [generic XDS-FHIR mapping](Generic XDS-FHIR mapping.md).
 
-### masterIdentifier
-Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.
+### ihe-designationType
+Mapped to `SubmissionSet.contentTypeCode`?<br>
+⚠️ Not bound in MHD but restrained in XDS by [SubmissionSet.contentTypeCode](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.40&effectiveDate=2021-04-01T17:08:39).
 
-### identifier
-Mapped to `SubmissionSet.entryUUID`. How?<br>
-The entryUUID is mapped to Identifier.value. Do we need a type/system to specify it's the entryUUID (the identifier is 1..\*? How to select the entryUUID in multiple identifiers? => If it's implementation dependant, the MHD sender is unable to know what will be the mapped entryUUID, that's bad. Restrict to 1..1 and UUID?
+### ihe-sourceId
+Mapped to `SubmissionSet.sourceId`.<br>
+⚠️ _value_ should be required.
+
+### ihe-intendedRecipient
+Complex mapping. Optional, so not so important for a first mapping.<br>
+⚠️ Bad reference types (not the CH Core types).
+
+### identifier:uniqueId
+Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.<br>
+⚠️ _value_ is not required.
+
+### identifier:entryUUID
+Mapped to `SubmissionSet.entryUUID`.<br>
+How to select the entryUUID in multiple identifiers? => If it's implementation dependant, the MHD sender is unable to know what will be the mapped entryUUID, that's bad. Restrict to 1..1 and UUID?
+⚠️ _value_ is not required.<br>
+⚠️ The cardinality could be adjusted to 1..1.
 
 ### status
-Mapped to `SubmissionSet.availabilityStatus`.<br>
-In XDS, the status is always *Approved*; in MHD, the status is always *current*.
+Mapped to `SubmissionSet.availabilityStatus`. In XDS, the status is always *Approved*.<br>
+⚠️ It should be fixed to *current*, as it is in the published version.
 
-### type
-Mapped to `SubmissionSet.contentTypeCode`. There is a CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html) (currently a fixed value).
+### mode
+Fixed value, no mapping.
+
+### title
+Mapped to `SubmissionSet.title`.
 
 ### subject
 Mapped to `SubmissionSet.patientId`. The referenced CH Core Patient Profile is provided in the Bundle.
 
-### created
-Mapped to `SubmissionSet.submissionTime`.<br>
-⚠️ XDS and MHD allow for different date formats.
+### date
+Mapped to `SubmissionSet.submissionTime`? XDS and MHD allow for different date formats.<br>
+⚠️ Technically not the same date (creation vs. submission).
 
-### author and ch-ext-author-authorrole
-Aweful mapping. Must support, so an important mapping?<br>
-Swiss modification: SubmissionSet.Author.AuthorRole is required and mapped to ch-ext-author-authorrole. See CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.Author.AuthorRole.html).<br>
-- If author is Reference(CH Core Practitioner Profile):
+### source and ch-ext-author-authorrole
+Complex mapping. Must support, so an important mapping?<br>
+- If source is Reference(CH Core Practitioner Profile):
   - authorPerson is ?
   - authorInstitution: "Organization" in "contained". XON.1 is Organization.name, XON.6.2, XON.6.3 and XON.10 are Organization.identifier. Other XON fields are forbidden. Other Organization fields are forbidden, ignored or stored?
   - authorRole is "Healthcare professional"?
   - authorSpecialty is ?
   - authorTelecommunication is ?
-- If author is Reference(CH Core Patient Profile):
+- If source is Reference(CH Core Patient Profile):
   - authorPerson is ?
   - authorInstitution is ?
   - authorRole is "Patient"?
   - authorSpecialty is ?
   - authorTelecommunication is ?
-- If author is Reference(RelatedPerson):
+- If source is Reference(RelatedPerson):
   - authorPerson is ?
   - authorInstitution is ?
   - authorRole is "Representative"?
   - authorSpecialty is ?
   - authorTelecommunication is ?
-- If author is Reference(CH Core Practitioner Role Profile): forbidden?
-- If author is Reference(CH Core Organization Profile): forbidden?
-- If author is Reference(Device): forbidden?
+- If source is Reference(CH Core Practitioner Role Profile): forbidden?
+- If source is Reference(CH Core Organization Profile): forbidden?
+- If source is Reference(Device): forbidden?
 - Missing Assistant and Technical user.
-⚠️ What to do if authorRole is e.g. HCP but author is Reference(CH Core Patient Profile)?
-
-### recipient
-Aweful mapping. Optional, so not so important for a first mapping.
-
-### source
-Mapped to `SubmissionSet.sourceId`. OID in XDS, urn-encoded OID in MHD.
-
-### description
-Mapped to `SubmissionSet.title`.
+⚠️ What to do if authorRole is e.g. HCP but source is Reference(CH Core Patient Profile)?<br>
+⚠️ Bad reference types (not the CH Core types). Also for _ihe-authorOrg_.
 
 ### text
 Mapped to `SubmissionSet.comments`. Raw text in XDS, XHTML in FHIR.<br>
 ⚠️ If XHTML text is given in MHD, it will be stripped in the mapping.<br>
 ⚠️ Narrative.status is mandatory in FHIR, absent from XDS.
-
-### content
-Contains other resources.
-
-### meta.profile
-Reference to [StructureDefinition: IHE_MHD_Comprehensive_DocumentManifest](http://fhir.ch/ig/ch-epr-mhealth/StructureDefinition-IHE.MHD.Comprehensive.DocumentManifest.html).<br>
-Mapped to `SubmissionSet.limitedMetadata`, which is forbidden in XDS, so no mapping needed.<br>
-This could be restricted in MHD, other profiles should not be supported.
 
 ### others
 `SubmissionSet.homeCommunityId` is not mapped but is optional. Other FHIR properties are unmapped and will be lost.
@@ -81,15 +82,15 @@ This could be restricted in MHD, other profiles should not be supported.
 
 | Property | MHD | XDS sending | XDS responding | Comment |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| masterIdentifier | 1..1 | R | R | ✔️ OK |
-| identifier       | 1..*	| R | R | ✔️ OK |
-| status           | 1..1 | O | R | ✔️ OK |
-| type             | 1..1 | R | R | ✔️ OK |
-| subject          | 1..1 | R | R | ✔️ OK |
-| created          | 1..1 | R | R | ✔️ OK |
-| author           | 0..*	| R | R | ⚠️ Incompatible |
-| authorRole       | 1..1	| O | O | ⚠️ Incompatible |
-| recipient        | 0..* | O | O | ✔️ OK |
-| source           | 1..1 | R | R | ✔️ OK |
-| description      | 0..1 | O | O | ✔️ OK |
-| text             | 0..1 | O | O | ✔️ OK |
+| text                     | 0..1 | O | O | ✔️ OK |
+| ihe-designationType      | 1..1 | R | R | ✔️ OK |
+| ihe-sourceId             | 1..1 | R | R | ⚠️ Internal cardinality issue |
+| ihe-intendedRecipient    | 0..* | O | O | ✔️ OK |
+| ch-ext-author-authorrole | 0..1 | O | O | ⚠️ There may be several author roles in a SubmissionSet |
+| identifier:uniqueId      | 1..1 | R | R | ⚠️ Internal cardinality issue |
+| identifier:entryUUID     | 0..*	| R | R | ⚠️ Cardinality can be improved, internal cardinality issue |
+| status                   | 1..1 | O | R | ✔️ OK |
+| title                    | 0..1 | O | O | ✔️ OK |
+| subject                  | 1..1 | R | R | ✔️ OK |
+| date                     | 1..1 | R | R | ✔️ OK |
+| source                   | 0..1 | R2 | R2 | ⚠️ There may be several authors in a SubmissionSet |
