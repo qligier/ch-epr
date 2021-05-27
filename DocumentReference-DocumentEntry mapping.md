@@ -17,7 +17,7 @@ Do we need a type/system to specify it's the entryUUID (the identifier is 1..\*?
 Restrict to 1..1 and UUID?
 
 ### status
-Mapped to `DocumentEntry.availabilityStatus`.
+Mapped to `DocumentEntry.availabilityStatus`. Sending actor: required in MHD but not in XDS: not an issue, the default (and only sensible) value is `current`.
 
 | DocumentReference.status | DocumentEntry.availabilityStatus |
 | ------------ | ------------ |
@@ -77,6 +77,7 @@ Mapped to `DocumentEntry.title`.
 
 ## content.attachment.creation
 Mapped to `DocumentEntry.creationTime`.<br>
+⚠️ Absent for On-Demand document but always required in MHD.<br>
 ⚠️ XDS and MHD allow for different date formats.
 
 ## content.format
@@ -110,7 +111,7 @@ There a value set for `DocumentEntry.sourcePatientInfo.PID-8`.<br>
 
 ## context.encounter
 > When referenceIdList contains an encounter, and a FHIR Encounter is available, it may be referenced.
-> 
+
 Mapped to `DocumentEntry.referenceIdList`. Not used in CH-EPR?
 
 ## context.related
@@ -122,14 +123,44 @@ Mapped to `DocumentEntry.referenceIdList`.
 ## objectType
 ⚠️ Absent from MHD but required in XDS. It should not be an issue for the PMP or the MobileAccessGateway, but others may encounter it.
 
+## relatesTo
+Is storred as an association in an XDS Registry. It means it will be stripped from the resource in an ITI-18 response that doesn't include Associations if it goes through the MobileAccessGateway, even if it was provided as a FHIR resource. Not sure how the PMP will manage that in a native MHD response.
+
 ### others
-`homeCommunityId` and `DocumentEntry.repositoryUniqueId` is not mapped. Other FHIR properties are not mapped and will be lost.
+`DocumentEntry.homeCommunityId`, `documentAvailability`, `logicalID`, `version`, `legalAuthenticator`, `URI`, and `repositoryUniqueId` are not mapped. They're all optional (except for repositoryUniqueId, mandatory for XDS responding actor).
+
+Other FHIR properties are not mapped and will be lost.
 
 
 ## cardinalities
 
-| Property | MHD Provide | MHD Query | XDS sending | XDS responding | Comment |
-| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-| masterIdentifier | 1..1 | 1..1 | R | R | ✔️ OK |
-| author | 0..*	| 0..*	| R | R | ⚠️ Incompatible |
-| date | 1..1	| 1..1	| X | X | ⚠️ Incompatible |
+| Property                       | MHD Provide | MHD Query | XDS sending | XDS responding | Comment |
+| ------------                   | ---- | ---- | - | - | ------------ |
+| ch-ext-deletionstatus	         | 0..1 | 0..1 | O | O | ✔️ OK |
+| masterIdentifier               | 1..1 | 1..1 | R | R | ✔️ OK |
+| identifier                     | 1..*	| 1..* | R | R | ✔️ OK |
+| status                         | 1..1 | 1..1 | O | R | ✔️ OK (see comment) |
+| type                           | 1..1 | 1..1 | R | R | ✔️ OK |
+| category                       | 1..1 | 1..1 | R | R | ✔️ OK |
+| subject                        | 1..1 | 1..1 | R | R | ✔️ OK |
+| date                           | 1..1	| 1..1 | X | X | ⚠️ Incompatible |
+| author                         | 0..* | 0..* | O | O | ✔️ OK |
+| authorRole                     | X    | X    | O | O | Is it OK? |
+| description                    | 0..1 | 0..1 | O | O | ✔️ OK |
+| securityLabel                  | 1..* | 1..* | R | R | ✔️ OK |
+| content.attachment.contentType | 1..1 | 1..1 | R | R | ✔️ OK |
+| content.attachment.language    | 1..1 | 1..1 | R | R | ✔️ OK |
+| content.attachment.size        | 0..1 | 0..1 | O | R | ✔️ OK, may have to calculate it |
+| content.attachment.hash        | 0..1 | 0..1 | O | R | ✔️ OK, may have to calculate it |
+| content.attachment.title       | 0..1 | 0..1 | R | R | ⚠️ Incompatible |
+| content.attachment.creation    | 1..1 | 1..1 | R | R/X | ⚠️ Incompatible |
+| content.format                 | 1..1 | 1..1 | R | R | ✔️ OK |
+| context.event                  | 0..* | 0..* | O | O | ✔️ OK |
+| context.period                 | 0..1 | 0..1 | O | O | ✔️ OK |
+| context.facilityType           | 1..1 | 1..1 | R | R | ✔️ OK |
+| context.practiceSetting        | 1..1 | 1..1 | R | R | ✔️ OK |
+| context.sourcePatientInfo      | 1..1 | 1..1 | R | R | ✔️ OK |
+| context.encounter              | 0..* | 0..* | O | O | ✔️ OK |
+| objectType                     | X    | X    | R | R | ⚠️ Incompatible in rare cases |
+| originalProviderRole           | ?    | ?    | R | R | Not sure about the XDS cardinality, it's absent from the Metadata Optionality table in Annex 5.1 |
+| repositoryUniqueId             | X    | X    | O | R | ⚠️ Incompatible in rare cases |
