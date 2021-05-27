@@ -85,7 +85,7 @@ This could be restricted in MHD, other profiles should not be supported.
 | type | 1..1 | R | R | ✔️ OK |
 | subject | 1..1 | R | R | ✔️ OK |
 | created | 1..1 | R | R | ✔️ OK |
-| author | 0..*	| R2 | R2 | ✔️ OK |
+| author | 0..*	| R | R | ⚠️ Incompatible |
 | authorRole | 1..1	| R | R | ✔️ OK |
 | recipient | 0..* | O | O | ✔️ OK |
 | source | 1..1 | R | R | ✔️ OK |
