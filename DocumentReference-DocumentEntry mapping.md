@@ -1,7 +1,6 @@
 # DocumentReference-DocumentEntry mapping in CH-EPR
 
-A review of [StructureDefinition: IHE_MHD_Provide_Comprehensive_DocumentReference_CH](http://fhir.ch/ig/ch-epr-mhealth/StructureDefinition-ch-mhd-provide-comprehensive-documentreference.html)
-and [StructureDefinition: IHE_MHD_Query_Comprehensive_DocumentReference_CH](http://fhir.ch/ig/ch-epr-mhealth/StructureDefinition-ch-mhd-query-comprehensive-documentreference.html)
+A review of [Resource Profile: CH MHD DocumentReference Comprehensive](http://build.fhir.org/ig/ehealthsuisse/ch-epr-mhealth/StructureDefinition-ch-mhd-documentreference-comprehensive.html) (draft v0.2.0)
 against releveant XDS specifications.
 
 See also [generic XDS-FHIR mapping](Generic XDS-FHIR mapping.md).
@@ -66,8 +65,8 @@ Complex mapping. Mapped to `DocumentEntry.author`.<br>
 - If author is Reference(Device): forbidden?
 - Missing Assistant and Technical user.
 
-### authorRole
-⚠️ Mapped to `ch-ext-author-authorrole` in DocumentManifest but absent from these profiles.
+### ch-ext-author-authorrole
+Mapped to `DocumentEntry.author.authorRole`. Value set on both sides.
 
 ### authenticator
 Mapped to `DocumentEntry.legalAuthenticator`. XCN (HL7 V2.5 Extended Person Name) to Reference(CH Core Practitioner Profile | CH Core Practitioner Role Profile). Optional, so not so important for a first mapping.
@@ -87,7 +86,7 @@ Mapped to `DocumentEntry.deletionStatus`. Value set on both sides.<br>
 ⚠️ Absent from the current MHD profiles.
 
 ## date
-⚠️ Absent from XDS
+⚠️ Absent from XDS.
 
 ## content.attachment.contentType
 Mapped to `DocumentEntry.mimeType`.<br>
@@ -137,7 +136,7 @@ Mapped to `DocumentEntry.practiceSettingCode`.Value set on both sides.<br>
 Mapped to `DocumentEntry.sourcePatientInfo` and `DocumentEntry.sourcePatientId`.
 In FHIR, it's a contained CH Core Patient Profile resource.<br>
 There a value set for `DocumentEntry.sourcePatientInfo.PID-8`.<br>
-⚠️ `DocumentEntry.sourcePatientInfo` is way too hard to map, but it's optional.
+`DocumentEntry.sourcePatientInfo` is way too hard to map, but it's optional.
 
 | XDS | FHIR | Comment |
 | ------------ | ------------ | ------------ |
@@ -169,33 +168,33 @@ Other FHIR properties are not mapped and will be lost.
 
 ## cardinalities
 
-| Property                       | MHD Provide | MHD Query | XDS sending | XDS responding | Comment |
-| ------------                   | ---- | ---- | - | - | ------------ |
-| deletionstatus	               | 0..1 | 0..1 | O | O | ✔️ OK |
-| masterIdentifier               | 1..1 | 1..1 | R | R | ✔️ OK |
-| identifier                     | 1..*	| 1..* | R | R | ✔️ OK |
-| status                         | 1..1 | 1..1 | O | R | ✔️ OK (see comment) |
-| type                           | 1..1 | 1..1 | R | R | ✔️ OK |
-| category                       | 1..1 | 1..1 | R | R | ✔️ OK |
-| subject                        | 1..1 | 1..1 | R | R | ✔️ OK |
-| date                           | 1..1	| 1..1 | X | X | ⚠️ Incompatible |
-| author                         | 0..* | 0..* | O | O | ✔️ OK |
-| authorRole                     | X    | X    | O | O | Is it OK? |
-| description                    | 0..1 | 0..1 | O | O | ✔️ OK |
-| securityLabel                  | 1..* | 1..* | R | R | ✔️ OK |
-| content.attachment.contentType | 1..1 | 1..1 | R | R | ✔️ OK |
-| content.attachment.language    | 1..1 | 1..1 | R | R | ✔️ OK |
-| content.attachment.size        | 0..1 | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
-| content.attachment.hash        | 0..1 | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
-| content.attachment.title       | 0..1 | 0..1 | R | R | ⚠️ Incompatible |
-| content.attachment.creation    | 1..1 | 1..1 | R | R/X | ⚠️ Incompatible |
-| content.format                 | 1..1 | 1..1 | R | R | ✔️ OK |
-| context.event                  | 0..* | 0..* | O | O | ✔️ OK |
-| context.period                 | 0..1 | 0..1 | O | O | ✔️ OK |
-| context.facilityType           | 1..1 | 1..1 | R | R | ✔️ OK |
-| context.practiceSetting        | 1..1 | 1..1 | R | R | ✔️ OK |
-| context.sourcePatientInfo      | 1..1 | 1..1 | R | R | ✔️ OK |
-| context.encounter              | 0..* | 0..* | O | O | ✔️ OK |
-| objectType                     | X    | X    | R | R | ⚠️ Incompatible in rare cases |
-| originalProviderRole           | ?    | ?    | R | R | Not sure about the XDS cardinality, it's absent from the Metadata Optionality table in Annex 5.1 |
-| repositoryUniqueId             | X    | X    | O | R | ⚠️ Incompatible in rare cases |
+| Property                       | MHD  | XDS sending | XDS responding | Comment |
+| ------------                   | ---- | - | - | ------------ |
+| deletionstatus	               | 0..1 | O | O | ✔️ OK |
+| masterIdentifier               | 1..1 | R | R | ✔️ OK |
+| identifier                     | 1..*	| R | R | ✔️ OK |
+| status                         | 1..1 | O | R | ✔️ OK (see comment) |
+| type                           | 1..1 | R | R | ✔️ OK |
+| category                       | 1..1 | R | R | ✔️ OK |
+| subject                        | 1..1 | R | R | ✔️ OK |
+| date                           | 1..1	| X | X | ⚠️ Incompatible |
+| author                         | 0..* | O | O | ✔️ OK |
+| authorRole                     | 1..1 | O | O | ⚠️ Incompatible |
+| description                    | 0..1 | O | O | ✔️ OK |
+| securityLabel                  | 1..* | R | R | ✔️ OK |
+| content.attachment.contentType | 1..1 | R | R | ✔️ OK |
+| content.attachment.language    | 1..1 | R | R | ✔️ OK |
+| content.attachment.size        | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
+| content.attachment.hash        | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
+| content.attachment.title       | 0..1 | R | R | ⚠️ Incompatible |
+| content.attachment.creation    | 1..1 | R | R/X | ⚠️ Incompatible |
+| content.format                 | 1..1 | R | R | ✔️ OK |
+| context.event                  | 0..* | O | O | ✔️ OK |
+| context.period                 | 0..1 | O | O | ✔️ OK |
+| context.facilityType           | 1..1 | R | R | ✔️ OK |
+| context.practiceSetting        | 1..1 | R | R | ✔️ OK |
+| context.sourcePatientInfo      | 1..1 | R | R | ✔️ OK |
+| context.encounter              | 0..* | O | O | ✔️ OK |
+| objectType                     | X    | R | R | ⚠️ Incompatible in rare cases |
+| originalProviderRole           | ?    | R | R | Not sure about the XDS cardinality, it's absent from the Metadata Optionality table in Annex 5.1 |
+| repositoryUniqueId             | X    | O | R | ⚠️ Incompatible in rare cases |
