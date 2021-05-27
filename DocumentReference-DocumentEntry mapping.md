@@ -6,14 +6,16 @@ against releveant XDS specifications.
 See also [generic XDS-FHIR mapping](Generic XDS-FHIR mapping.md).
 
 ### masterIdentifier
-Mapped to `DocumentEntry.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.
+Mapped to `DocumentEntry.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.<br>
+⚠️ _value_ should be required and constrained to an UUID.
 
 ### identifier
 Mapped to `DocumentEntry.entryUUID`. How?<br>
 The entryUUID is mapped to Identifier.value.
 Do we need a type/system to specify it's the entryUUID (the identifier is 1..\*? How to select the entryUUID in multiple identifiers?
 => If it's implementation dependant, the MHD sender is unable to know what will be the mapped entryUUID, that's bad.
-Restrict to 1..1 and UUID?
+Restrict to 1..1 and UUID?<br>
+⚠️ _value_ should be required and constrained to an UUID.
 
 ### status
 Mapped to `DocumentEntry.availabilityStatus`. Sending actor: required in MHD but not in XDS: not an issue, the default (and only sensible) value is `current`.
@@ -66,7 +68,8 @@ Complex mapping. Mapped to `DocumentEntry.author`.<br>
 - Missing Assistant and Technical user.
 
 ### ch-ext-author-authorrole
-Mapped to `DocumentEntry.author.authorRole`. Value set on both sides.
+Mapped to `DocumentEntry.author.authorRole`. Value set on both sides.<br>
+⚠️ It's 0..* in XDS and 1..1 in MHD.
 
 ### authenticator
 Mapped to `DocumentEntry.legalAuthenticator`. XCN (HL7 V2.5 Extended Person Name) to Reference(CH Core Practitioner Profile | CH Core Practitioner Role Profile). Optional, so not so important for a first mapping.
@@ -171,8 +174,8 @@ Other FHIR properties are not mapped and will be lost.
 | Property                       | MHD  | XDS sending | XDS responding | Comment |
 | ------------                   | ---- | - | - | ------------ |
 | deletionstatus	               | 0..1 | O | O | ✔️ OK |
-| masterIdentifier               | 1..1 | R | R | ✔️ OK |
-| identifier                     | 1..*	| R | R | ✔️ OK |
+| masterIdentifier               | 1..1 | R | R | ⚠️ Internal cardinality issue |
+| identifier                     | 1..*	| R | R | ⚠️ External and internal cardinality issues |
 | status                         | 1..1 | O | R | ✔️ OK (see comment) |
 | type                           | 1..1 | R | R | ✔️ OK |
 | category                       | 1..1 | R | R | ✔️ OK |
@@ -181,18 +184,18 @@ Other FHIR properties are not mapped and will be lost.
 | author                         | 0..* | O | O | ✔️ OK |
 | authorRole                     | 1..1 | O | O | ⚠️ Incompatible |
 | description                    | 0..1 | O | O | ✔️ OK |
-| securityLabel                  | 1..* | R | R | ✔️ OK |
+| securityLabel                  | 1..* | R | R | ⚠️ Internal cardinality issue |
 | content.attachment.contentType | 1..1 | R | R | ✔️ OK |
 | content.attachment.language    | 1..1 | R | R | ✔️ OK |
 | content.attachment.size        | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
 | content.attachment.hash        | 0..1 | O | R3 | ✔️ OK, may have to calculate it |
 | content.attachment.title       | 0..1 | R | R | ⚠️ Incompatible |
 | content.attachment.creation    | 1..1 | R | R/X | ⚠️ Incompatible |
-| content.format                 | 1..1 | R | R | ✔️ OK |
+| content.format                 | 1..1 | R | R | ⚠️ Internal cardinality issue |
 | context.event                  | 0..* | O | O | ✔️ OK |
 | context.period                 | 0..1 | O | O | ✔️ OK |
-| context.facilityType           | 1..1 | R | R | ✔️ OK |
-| context.practiceSetting        | 1..1 | R | R | ✔️ OK |
+| context.facilityType           | 1..1 | R | R | ⚠️ Internal cardinality issue |
+| context.practiceSetting        | 1..1 | R | R | ⚠️ Internal cardinality issue |
 | context.sourcePatientInfo      | 1..1 | R | R | ✔️ OK |
 | context.encounter              | 0..* | O | O | ✔️ OK |
 | objectType                     | X    | R | R | ⚠️ Incompatible in rare cases |
