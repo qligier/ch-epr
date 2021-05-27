@@ -39,8 +39,8 @@ Mapped to `DocumentEntry.patientId`. The referenced CH Core Patient Profile is p
 
 ### author
 Complex mapping. Mapped to `DocumentEntry.author`.<br>
-⚠️ No MHD binding but XDS constrained by value set DocumentEntry.authorSpeciality.<br>
-⚠️ No MHD binding but XDS constrained by value set DocumentEntry.author.authorRole.<br>
+⚠️ No MHD binding but XDS constrained by value set [DocumentEntry.authorSpeciality](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.1.4&effectiveDate=2021-04-01T10:38:06).<br>
+⚠️ No MHD binding but XDS constrained by value set [DocumentEntry.author.authorRole](https://art-decor.org/art-decor/decor-valuesets--ch-epr-?id=2.16.756.5.30.1.127.3.10.1.1.3&effectiveDate=2021-04-01T08:55:32).<br>
 - If author is Reference(CH Core Practitioner Profile):
   - authorPerson is ?
   - authorInstitution: "Organization" in "contained". XON.1 is Organization.name, XON.6.2, XON.6.3 and XON.10 are Organization.identifier. Other XON fields are forbidden. Other Organization fields are forbidden, ignored or stored?
