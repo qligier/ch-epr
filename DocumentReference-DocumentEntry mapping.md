@@ -4,6 +4,8 @@ A review of [StructureDefinition: IHE_MHD_Provide_Comprehensive_DocumentReferenc
 and [StructureDefinition: IHE_MHD_Query_Comprehensive_DocumentReference_CH](http://fhir.ch/ig/ch-epr-mhealth/StructureDefinition-ch-mhd-query-comprehensive-documentreference.html)
 against releveant XDS specifications.
 
+See also [generic XDS-FHIR mapping](Generic XDS-FHIR mapping.md).
+
 ### masterIdentifier
 Mapped to `DocumentEntry.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.
 
