@@ -17,13 +17,13 @@ Complex mapping. Optional, so not so important for a first mapping.<br>
 ⚠️ Bad reference types (not the CH Core types).
 
 ### identifier:uniqueId
-Mapped to `SubmissionSet.uniqueId`. In XDS, it's an OID (*1.3.6.1.4.1.21367.2005.3.7*); in FHIR, it's an URN-encoded OID (*urn:oid:1.3.6.1.4.1.21367.2005.3.7*) with the system *urn:ietf:rfc:3986*.<br>
-⚠️ _value_ is not required.
+Mapped to `SubmissionSet.uniqueId`.<br>
+⚠️ _value_ should be required and constrained to an UUID.
 
 ### identifier:entryUUID
 Mapped to `SubmissionSet.entryUUID`.<br>
-How to select the entryUUID in multiple identifiers? => If it's implementation dependant, the MHD sender is unable to know what will be the mapped entryUUID, that's bad. Restrict to 1..1 and UUID?
-⚠️ _value_ is not required.<br>
+How to select the entryUUID in multiple identifiers? => If it's implementation dependant, the MHD sender is unable to know what will be the mapped entryUUID, that's bad. Restrict to 1..1 and UUID?<br>
+⚠️ _value_ should be required and constrained to an UUID.<br>
 ⚠️ The cardinality could be adjusted to 1..1.
 
 ### status
