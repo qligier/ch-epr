@@ -16,7 +16,7 @@ Mapped to `SubmissionSet.availabilityStatus`.<br>
 In XDS, the status is always *Approved*; in MHD, the status is always *current*.
 
 ### type
-Mapped to `SubmissionSet.contentTypeCode`. There is a CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html).
+Mapped to `SubmissionSet.contentTypeCode`. There is a CH-EPR [value set](http://fhir.ch/ig/ch-epr-term/ValueSet-SubmissionSet.contentTypeCode.html) (currently a fixed value).
 
 ### subject
 Mapped to `SubmissionSet.patientId`. The referenced CH Core Patient Profile is provided in the Bundle.
@@ -75,21 +75,21 @@ Mapped to `SubmissionSet.limitedMetadata`, which is forbidden in XDS, so no mapp
 This could be restricted in MHD, other profiles should not be supported.
 
 ### others
-`SubmissionSet.homeCommunityId` is not mapped. Other FHIR properties are unmapped and will be lost.
+`SubmissionSet.homeCommunityId` is not mapped but is optional. Other FHIR properties are unmapped and will be lost.
 
 ## cardinalities
 
 | Property | MHD | XDS sending | XDS responding | Comment |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | masterIdentifier | 1..1 | R | R | ✔️ OK |
-| identifier | 1..*	| R | R | ✔️ OK |
-| status | 1..1 | O | R | ✔️ OK |
-| type | 1..1 | R | R | ✔️ OK |
-| subject | 1..1 | R | R | ✔️ OK |
-| created | 1..1 | R | R | ✔️ OK |
-| author | 0..*	| R | R | ⚠️ Incompatible |
-| authorRole | 1..1	| O | O | ⚠️ Incompatible |
-| recipient | 0..* | O | O | ✔️ OK |
-| source | 1..1 | R | R | ✔️ OK |
-| description | 0..1 | O | O | ✔️ OK |
-| text | 0..1 | O | O | ✔️ OK |
+| identifier       | 1..*	| R | R | ✔️ OK |
+| status           | 1..1 | O | R | ✔️ OK |
+| type             | 1..1 | R | R | ✔️ OK |
+| subject          | 1..1 | R | R | ✔️ OK |
+| created          | 1..1 | R | R | ✔️ OK |
+| author           | 0..*	| R | R | ⚠️ Incompatible |
+| authorRole       | 1..1	| O | O | ⚠️ Incompatible |
+| recipient        | 0..* | O | O | ✔️ OK |
+| source           | 1..1 | R | R | ✔️ OK |
+| description      | 0..1 | O | O | ✔️ OK |
+| text             | 0..1 | O | O | ✔️ OK |
