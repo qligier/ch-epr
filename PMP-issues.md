@@ -24,6 +24,12 @@ The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1. 
   
 What goes into the medication plan? Which drug categories (i.e. dangerous drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
   
+## XUA
+  
+Is there requirements for the XML signature (i.e. CanonicalizationMethod, SignatureMethod, Transforms, DigestMethod)?
+ 
+Is there requirements for AuthnContextClassRef? How to process AuthnStatement/@SessionNotOnOrAfter with Conditions/@NotOnOrAfter? How to process Audience when it's not _urn:e-health-suisse:token-audience:all-communities_?
+  
 ## Other issues
   
 [CDA-CH-EMED](https://art-decor.org/art-decor/decor-issues--cdachemed-), [CH-PHARM](https://art-decor.org/art-decor/decor-issues--ch-pharm-), [CH-EPR](https://art-decor.org/art-decor/decor-issues--ch-epr-), [CH-EMED](https://github.com/ehealthsuisse/ch-emed/issues), [CH-EPR-mHealth](https://github.com/ehealthsuisse/ch-epr-mhealth/issues)
