@@ -6,7 +6,7 @@ For the document repository, the [audit message](https://ihe.github.io/publicati
 
 > Whenever a transaction was secured by XUA, the corresponding ATNA record **MUST** include the following set of <ActiveParticipant> elements related to involved users
 
-Is this incompatible? Are we allowed to add content to an audit message?
+Is this incompatible? Are we allowed to add content to an audit message? Should we fix ITI-43 specification?
 
 ## ITI-92 cannot update the deletionStatus attribute
 
