@@ -2,11 +2,11 @@
 
 ## ITI-43 audit message
 
-For the document repository, the [audit message](https://ihe.github.io/publications/ITI/TF/Volume2/ITI-43.html#3.43.6) cannot contain the human requestor(s). But the EPDV Annex 5.1 says:
+For the document repository, the [audit message](https://ihe.github.io/publications/ITI/TF/Volume2/ITI-43.html#3.43.6) does not describe the human requestor(s). But the EPDV Annex 5.1 says:
 
 > Whenever a transaction was secured by XUA, the corresponding ATNA record **MUST** include the following set of <ActiveParticipant> elements related to involved users
 
-This is incompatible and should be fixed in the ITI-43 specification (CP-1104 is not fixing it).
+Is this incompatible? Are we allowed to add content to an audit message?
 
 ## ITI-92 cannot update the deletionStatus attribute
 
