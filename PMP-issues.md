@@ -15,3 +15,15 @@ ITI-57 (Update Document Set) does not allow cross-community calls, so we have to
 > In order to maintain interoperability among participating communities, certain metadata attributes are restricted from modification as they describe the current state of DocumentEntry object, or the stored physical document. The RMU Profile permits updating the following metadata attributes: [...] Other IHE Profiles, XDS Affinity Domain policies, or community policies may impose additional restrictions on the metadata attributes they allow to be changed.
   
 The attribute _deletionStatus_ cannot be updated by an ITI-92 query.
+  
+## Usage of deletionStatus attribute
+
+The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1.  Who's allowed to set it/update it? On which documents? What is the use case for _deletionProhibited_? What is the by law determinate time period?
+
+## Content of the medication plan
+  
+What goes into the medication plan? Which drug categories (i.e. dangerous drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
+  
+## Other issues
+  
+[CDA-CH-EMED](https://art-decor.org/art-decor/decor-issues--cdachemed-), [CH-PHARM](https://art-decor.org/art-decor/decor-issues--ch-pharm-), [CH-EPR](https://art-decor.org/art-decor/decor-issues--ch-epr-), [CH-EMED](https://github.com/ehealthsuisse/ch-emed/issues), [CH-EPR-mHealth](https://github.com/ehealthsuisse/ch-epr-mhealth/issues)
