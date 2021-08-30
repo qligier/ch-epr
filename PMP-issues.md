@@ -11,25 +11,29 @@ Is this incompatible? Are we allowed to add content to an audit message? Should 
 ## ITI-92 cannot update the deletionStatus attribute
 
 ITI-57 (Update Document Set) does not allow cross-community calls, so we have to use ITI-92 (Restricted Update Document Set). But its specification specifically says (§48.4.1):
-  
+
 > In order to maintain interoperability among participating communities, certain metadata attributes are restricted from modification as they describe the current state of DocumentEntry object, or the stored physical document. The RMU Profile permits updating the following metadata attributes: [...] Other IHE Profiles, XDS Affinity Domain policies, or community policies may impose additional restrictions on the metadata attributes they allow to be changed.
-  
+
 The attribute _deletionStatus_ cannot be updated by an ITI-92 query.
-  
+
 ## Usage of deletionStatus attribute
 
 The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1.  Who's allowed to set it/update it? On which documents? What is the use case for _deletionProhibited_? What is the by law determinate time period?
 
 ## Content of the medication plan
-  
+
 What goes into the medication plan? Which drug categories (i.e. dangerous drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
-  
+
 ## XUA
-  
+
 Is there requirements for the XML signature (i.e. CanonicalizationMethod, SignatureMethod, Transforms, DigestMethod)?
- 
+
 Is there requirements for AuthnContextClassRef? How to process AuthnStatement/@SessionNotOnOrAfter with Conditions/@NotOnOrAfter? How to process Audience when it's not _urn:e-health-suisse:token-audience:all-communities_?
-  
+
+## Document IDs management
+
+How to deal with document IDs in respect to DocumentEntry vs DocumentReference, CDA vs FHIR/XML vs FHIR/JSON? Same ID for the three? Three IDs? Two IDs (CDA and FHIR)? No good solution, issues with references between documents (a CDA that references a FHIR by example), issues with translating between CDA and FHIR (IDs
+
 ## Other issues
-  
+
 [CDA-CH-EMED](https://art-decor.org/art-decor/decor-issues--cdachemed-), [CH-PHARM](https://art-decor.org/art-decor/decor-issues--ch-pharm-), [CH-EPR](https://art-decor.org/art-decor/decor-issues--ch-epr-), [CH-EMED](https://github.com/ehealthsuisse/ch-emed/issues), [CH-EPR-mHealth](https://github.com/ehealthsuisse/ch-epr-mhealth/issues)
