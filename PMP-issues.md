@@ -24,6 +24,10 @@ The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1. 
 
 What goes into the medication plan? Which drug categories (i.e. dangerous drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
 
+## Drug database
+
+Do we need to connect the aggregator to a drug database (compendium)? If it shall reject 'protected' drugs or non-drugs, then surely yes.
+
 ## XUA
 
 Is there requirements for the XML signature (i.e. CanonicalizationMethod, SignatureMethod, Transforms, DigestMethod)?
@@ -32,7 +36,9 @@ Is there requirements for AuthnContextClassRef? How to process AuthnStatement/@S
 
 ## Document IDs management
 
-How to deal with document IDs in respect to DocumentEntry vs DocumentReference, CDA vs FHIR/XML vs FHIR/JSON? Same ID for the three? Three IDs? Two IDs (CDA and FHIR)? No good solution, issues with references between documents (a CDA that references a FHIR by example), issues with translating between CDA and FHIR (IDs
+How to deal with document IDs in respect to DocumentEntry vs DocumentReference, CDA vs FHIR/XML vs FHIR/JSON? Same ID for the three? Three IDs? Two IDs (CDA and FHIR)? No good solution, issues with references between documents (a CDA that references a FHIR by example), issues with translating between CDA and FHIR (keep or translate the IDs?).
+
+E.g. to choose document type, need to use differents IDs in ITI-43 but should use the same ID in ITI-65.
 
 ## Other issues
 
