@@ -40,6 +40,8 @@ How to deal with document IDs in respect to DocumentEntry vs DocumentReference, 
 
 E.g. to choose document type, need to use differents IDs in ITI-43 but should use the same ID in ITI-65.
 
+Whatever the choice, there will be multiple issues and none of the solutions seems to be better than the others.
+
 ## Other issues
 
 [CDA-CH-EMED](https://art-decor.org/art-decor/decor-issues--cdachemed-), [CH-PHARM](https://art-decor.org/art-decor/decor-issues--ch-pharm-), [CH-EPR](https://art-decor.org/art-decor/decor-issues--ch-epr-), [CH-EMED](https://github.com/ehealthsuisse/ch-emed/issues), [CH-EPR-mHealth](https://github.com/ehealthsuisse/ch-epr-mhealth/issues)
