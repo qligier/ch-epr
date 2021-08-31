@@ -14,7 +14,7 @@ ITI-57 (Update Document Set) does not allow cross-community calls, so we have to
 
 > In order to maintain interoperability among participating communities, certain metadata attributes are restricted from modification as they describe the current state of DocumentEntry object, or the stored physical document. The RMU Profile permits updating the following metadata attributes: [...] Other IHE Profiles, XDS Affinity Domain policies, or community policies may impose additional restrictions on the metadata attributes they allow to be changed.
 
-The attribute _deletionStatus_ cannot be updated by an ITI-92 query.
+The attribute _deletionStatus_ cannot be updated by an ITI-92 query, it means a document cannot be deleted in a cross-community transaction.
 
 ## Usage of deletionStatus attribute
 
@@ -22,7 +22,7 @@ The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1. 
 
 ## Content of the medication plan
 
-What goes into the medication plan? Which drug categories (i.e. dangerous drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
+What goes into the medication plan? Which drug categories (i.e. dangerous/protected drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
 
 ## Drug database
 
@@ -38,7 +38,7 @@ Is there requirements for AuthnContextClassRef? How to process AuthnStatement/@S
 
 How to deal with document IDs in respect to DocumentEntry vs DocumentReference, CDA vs FHIR/XML vs FHIR/JSON? Same ID for the three? Three IDs? Two IDs (CDA and FHIR)? No good solution, issues with references between documents (a CDA that references a FHIR by example), issues with translating between CDA and FHIR (keep or translate the IDs?).
 
-E.g. to choose document type, need to use differents IDs in ITI-43 but should use the same ID in ITI-65.
+E.g. to choose document type, need to use differents IDs in ITI-43 but should use the same ID in ITI-68.
 
 Whatever the choice, there will be multiple issues and none of the solutions seems to be better than the others.
 
