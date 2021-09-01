@@ -24,6 +24,8 @@ The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1. 
 
 What goes into the medication plan? Which drug categories (i.e. dangerous/protected drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
 
+Is there limitations depending on the drug type? (e.g. preventing patients from creating prescriptions for anything else than over-the-counter drugs)
+
 ## Drug database
 
 Do we need to connect the aggregator to a drug database (compendium)? If it shall reject 'protected' drugs or non-drugs, then surely yes.
