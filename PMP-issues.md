@@ -18,17 +18,23 @@ The attribute _deletionStatus_ cannot be updated by an ITI-92 query, it means a 
 
 ## Usage of deletionStatus attribute
 
-The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1.  Who's allowed to set it/update it? On which documents? What is the use case for _deletionProhibited_? What is the by law determinate time period?
+The usage of the attribute _deletionStatus_ is not described by EPDV Annex 5.1. Who's allowed to set it/update it? On which documents? What is the use case for _deletionProhibited_? What is the by law determinate time period?
 
 ## Content of the medication plan
 
 What goes into the medication plan? Which drug categories (i.e. dangerous/protected drugs, drug trials)? Are prescrivable non-drugs allowed (e.g. crutches)?
 
-Is there limitations depending on the drug type? (e.g. preventing patients from creating prescriptions for anything else than over-the-counter drugs)
-
 ## Drug database
 
 Do we need to connect the aggregator to a drug database (compendium)? If it shall reject 'protected' drugs or non-drugs, then surely yes.
+
+## Patient rights
+
+What can a patient do? Can they create a PRE or DIS? Is there limitations depending on the drug type? (e.g. preventing patients from creating MTPs for anything else than over-the-counter drugs). Can they specify a drug that has no GTIN (i.e. not in the compendium)?
+
+## Medication card
+
+A template has to be created, with the rules to generate it (order, grouping, etc.). A special effort has to be made on dosing forms.
 
 ## XUA
 
