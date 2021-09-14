@@ -54,6 +54,10 @@ Whatever the choice, there will be multiple issues and none of the solutions see
 
 What's the scope of the POC?
 
+## APPC and emergency access rights
+
+If emergency access rights ("break-the-glass" feature) are not defined in the APPC document, what is the default value (allow or deny)?
+
 ## Other issues
 
 [CDA-CH-EMED](https://art-decor.org/art-decor/decor-issues--cdachemed-), [CH-PHARM](https://art-decor.org/art-decor/decor-issues--ch-pharm-), [CH-EPR](https://art-decor.org/art-decor/decor-issues--ch-epr-), [CH-EMED](https://github.com/ehealthsuisse/ch-emed/issues), [CH-EPR-mHealth](https://github.com/ehealthsuisse/ch-epr-mhealth/issues)
